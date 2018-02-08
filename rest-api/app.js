@@ -1,40 +1,23 @@
-var express = require('express');
-var logger = require('morgan');
-var bodyParser = require('body-parser');
+const express     = require('express');
+const logger      = require('morgan');
+const bodyParser  = require('body-parser');
+const mongoose    = require('mongoose');
+const config      = require('./config');
+const cluster     = require('cluster');
+let app = express();
 
-const mysql = require('mysql');
-
-const PORT = 3000;
-var app = express();
-
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-
-app.use('/', require('./routes'));
-
-app.listen(PORT);
-
-// Connecting to the rest_api_database from root@localhost
-/*const con = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'password',
-  database: 'rest_api_database'
-});
-
-con.connect((err) => {
-  if(err){
-    //if there is an error then return the error
-    console.log(err);
-    return;
+if (cluster.isMaster) {
+  var numWorkers = require('os').cpus().length;
+    for(var i = 0; i < numWorkers; i++) {
+      cluster.fork();
   }
-  console.log('Connection established');
-
-
-});
-*/
-
-
+} else {
+  app.use(logger('dev'));
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use('/', require('./routes'));
+  console.log(`Listening on port ${config.port}`)
+  app.listen(config.port);
+}
 
 module.exports = app;

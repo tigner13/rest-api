@@ -1,25 +1,42 @@
 var express = require('express');
 var router = express.Router();
-var api = require('./api');
-/* GET home page. */
 
-/*Calls to restaurants Data Base*/
-router.get('/restaurants', api.getRestaurants);
-router.post('/restaurants', api.postRestaurant);
-router.put('/restaurants', api.putRestaurant);
-router.delete('/restaurants', api.deleteRestaurant);
+/* Abstraction of routes */
 
-/*calls for meues database*/
-router.get('/menus', api.getMenus);
-router.post('/menus', api.postMenu);
-router.put('/menus', api.putMenu);
-router.delete('/menus', api.deleteMenu);
+/******* GET *******/
+var get = require('./get');
+// Array of all restaurants (skinny)
+router.get('/restaurant', get.getAll);
+// Restaurant (fat)
+router.get('/restaurant/:id', get.getOne);
+// Menu
+router.get('/restaurant/:id/menu/:type', get.getMenu);
 
-/*calls for menu items database*/
-router.get('/menu_items', api.getMenuItems);
-router.post('/menu_items', api.postMenuItem);
-router.put('/menu_items', api.putMenuItem);
-router.delete('/menu_items', api.deleteMenuItem);
+
+/******* ADD (POST) *******/
+var add = require('./add');
+// Restaurant
+router.post('/restaurant', add.addRestaurant);
+// Menu
+router.post('/restaurant/:id/menu', add.addMenu);
+// Menu Item
+router.post('/restaurant/:id/menu/:type', add.addMenuItem);
+
+
+/************* UPDATE (PUT)*************/
+var update = require('./update');
+// Restaurant
+router.put('/restaurant/:id', update.updateRestaurant);
+
+
+/******* DELETE *******/
+var deleteAPI = require('./delete');
+// Restaurant
+router.delete('/restaurant/:id', deleteAPI.deleteRestaurant);
+// Menu
+router.delete('/restaurant/:id/menu/:type', deleteAPI.deleteMenu);
+// Menu Item
+router.delete('/restaurant/:id/menu/:type/:itemId', deleteAPI.deleteMenuItem);
 
 
 module.exports = router;

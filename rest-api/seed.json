@@ -1,0 +1,5 @@
+{
+	"undefined": "localhost/rest-api",
+	"dev": "localhost/rest-api`",
+	"prod": "localhost/rest-api"
+}

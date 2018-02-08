@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Triple George Grill",
+    "address": "201 N 3rd St, Las Vegas, NV",
+    "genre": "American",
+    "phoneNumber": "702-384-2761",
+    "url": "http://www.triplegeorgegrill.com/",
+    "menus": [
+      {
+        "name": "Dinner Menu",
+        "menuType": "dinner",
+        "items": [
+          {
+            "name": "Shrimp Cocktail",
+            "price": 15.95,
+            "category": "Appetizer"
+          },
+          {
+            "name": "Bone-In Prime New York Strip",
+            "price": 50.95,
+            "category": "Steaks & Chops"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Nacho Daddy",
+    "address": "113 N 4th St",
+    "genre": "Mexican",
+    "phoneNumber": "702-778-7800",
+    "url": "https://nachodaddy.com/",
+    "menus": [
+      {
+        "name": "Main Menu",
+        "menuType": "dinner",
+        "items": [
+          {
+            "name": "Queso Dip",
+            "price": 5.99,
+            "category": "Appetizer"
+          },
+          {
+            "name": "Thai Chicken Nacho",
+            "price": 9.99,
+            "category": "World Famous Nachos"
+          }
+        ]
+      }
+    ]
+  }
+]
