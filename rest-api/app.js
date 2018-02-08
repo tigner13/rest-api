@@ -16,7 +16,7 @@ app.use('/', require('./routes'));
 app.listen(PORT);
 
 // Connecting to the rest_api_database from root@localhost
-const con = mysql.createConnection({
+/*const con = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'password',
@@ -30,14 +30,11 @@ con.connect((err) => {
     return;
   }
   console.log('Connection established');
-});
 
 
-con.end((err) => {
-  // The connection is terminated gracefully
-  // Ensures all previously enqueued queries are still
-  // before sending a COM_QUIT packet to the MySQL server.
 });
+*/
+
 
 
 module.exports = app;
